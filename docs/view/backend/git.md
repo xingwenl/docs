@@ -1,0 +1,98 @@
+# git 服务器搭建
+
+## 安装
+`yum install -y git`
+
+## 添加git管理账户密码
+```bash
+# 添加git账户
+$ adduser git
+
+# 修改git的密码
+$ passwd git
+# 然后两次输入git的密码确认后。
+
+# 查看git是否安装成功
+$ cd /home && ls -al
+# 如果已经有了git，那么表示成，参考如下：
+drwxr-xr-x.  5 root root 4096 Apr  4 15:03 .
+dr-xr-xr-x. 19 root root 4096 Apr  4 15:05 ..
+drwx------  10 git  git  4096 Apr  4 00:26 git
+
+# 默认还给我们分配一个名字叫git的组。
+```
+
+## 配置服务端的ssh访问
+```bash
+# 1.切换到git账号
+$ su git
+# 2.进入 git账户的主目录
+$ cd /home/git
+
+# 3.创建.ssh的配置，如果此文件夹已经存在请忽略此步。
+$ mkdir .ssh
+
+# 4. 进入刚创建的.ssh目录并创建authorized_keys文件,此文件存放客户端远程访问的 ssh的公钥。
+$ cd /home/git/.ssh
+$ touch authorized_keys
+
+# 5. 设置权限，此步骤不能省略，而且权限值也不要改，不然会报错。
+$ chmod 700 /home/git/.ssh/
+$ chmod 600 /home/git/.ssh/authorized_keys
+
+```
+
+## 创建git仓库
+```bash
+$ cd /home/git
+sudo git init --bare test.git
+# 设置文件夹权限和用户
+chown -R git test.git #用户
+chgrp -R git test.git #用户组
+```
+
+### 连接远程仓库
+```bash
+$ git clone git@47.97.110.41:/home/git/test.git
+```
+
+## 禁止客户端shell登录
+因为前面我们添加了客户端的ssh的公钥到远程服务器，所以客户端可以直接通过shell远程登录服务器，这不安全，也不是我们想要的。且看下面如何禁用shell登录
+
+```bash
+
+# 给 /home/git 下面创建git-shell-commands目录，并把目录的拥有者设置为git账户。可以直接用git账号登录服务器终端操作。
+$ mkdir /home/git/git-shell-commands
+
+#修改/etc/passwd文件
+$ vim /etc/passwd
+
+# 可以通过 vim的正则搜索快速定位到这行，  命名模式下  :/git:x
+
+# 找到这句, 注意1000可能是别的数字
+git:x:1000:1000::/home/git:/bin/bash
+
+# 改为：
+git:x:1000:1000::/home/git:/bin/git-shell
+
+# 最好不要直接改，可以先复制一行，然后注释掉一行，修改一行，保留原始的，这就是经验！！！
+# vim快捷键： 命令模式下：yy复制行， p 粘贴  0光标到行首 $到行尾 x删除一个字符  i进入插入模式 
+# 修改完后退出保存：  esc进入命令模式， 输入：:wq!   保存退出。
+```
+## git 命令
+```
+# 本地分支与远程origin的分支进行关联处理
+git branch --set-upstream-to=origin/master
+```
+
+## 常见问题
+.gitignore 失效
+```
+git rm -r --cached .
+git add .
+git commit -m 'We really don't want Git to track this anymore!'
+git rm --cached logs/xx.log
+```
+
+
+
