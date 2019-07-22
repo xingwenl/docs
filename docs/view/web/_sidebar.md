@@ -6,4 +6,5 @@
 * [npm相关](view/web/npm/npm.md)
 * [配置](view/config/config.md) -->
 * [nuxt](view/web/nuxt.md)
+* [TypeSript](view/web/ts.md)
 
