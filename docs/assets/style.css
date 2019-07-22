@@ -12,8 +12,19 @@
 }
 :root {
     
-    --sidebar-nav-link-before-content: '👉';
+    --sidebar-nav-link-before-content: '🐶';
     --base-font-size: 14px;
+
+    /* 标题字体 粗细  */
+
+    --heading-h1-font-weight: 800;
+    --heading-h2-font-weight: 700;
+    --heading-h3-font-weight: 600;
+    --heading-h4-font-weight: 500;
+}
+
+table {
+    display: table;
 }
 /* 🍎  */
 

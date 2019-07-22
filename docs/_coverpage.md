@@ -1,4 +1,4 @@
-![logo](assets/pic.jpg ':size=80')
+![logo](assets/logo.jpg ':size=80')
 
 # [docsify](/)
 

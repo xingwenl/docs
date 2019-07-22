@@ -94,5 +94,16 @@ git commit -m 'We really don't want Git to track this anymore!'
 git rm --cached logs/xx.log
 ```
 
+## Github 搭建Github Pages
 
+### 进入设置
+
+![图片1](../../assets/git/1.jpg)
+
+### 设置分支文件
+
+![图片2](../../assets/git/2.jpg)
+
+### 生成地址
+[地址](https://xingwenl.github.io/docs/)
 
