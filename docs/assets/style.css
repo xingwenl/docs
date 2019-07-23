@@ -10,10 +10,14 @@
 [v-cloak]{
     display: none;
 }
+
+/* themeable 样式 */
 :root {
     
     --sidebar-nav-link-before-content: '🐶';
     --base-font-size: 14px;
+
+    --zoomimage-overlay-background: rgba(0, 0, 0, 0.875);
 
     /* 标题字体 粗细  */
 

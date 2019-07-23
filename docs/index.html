@@ -10,7 +10,11 @@
   <!-- <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css"> -->
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-  <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
+  <!-- <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css"> -->
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.min.css"> -->
+  <!-- <link rel="stylesheet" href="path/to/prismjs-theme.css"> -->
+
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -36,18 +40,23 @@
         placeholder: '搜索',
         noData: '找不到结果!',
         depth: 6
-      }
+      },
+      readyTransition: true,
+      responsiveTables: true
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/emoji.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/external-script.js"></script>
+  <!-- 复制代码 -->
+  <script src="//unpkg.com/docsify-copy-code@2"></script>
   <script src="//unpkg.com/vue/dist/vue.min.js"></script>
   <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-bash.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-php.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('sw.js')

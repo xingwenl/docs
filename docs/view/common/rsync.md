@@ -265,3 +265,23 @@ rsync -av --delete --exclude-from=www-rsync-rules / remotehost:/dest/dir
 ## 参考链接
 
 > [https://blog.csdn.net/knight_zhen/article/details/47109077](https://blog.csdn.net/knight_zhen/article/details/47109077)
+
+## scp 命令
+
+scp 是 secure copy 的缩写，用于远程的文件的复制
+
+```bash
+scp /home/space/music/1.mp3 username@ip/home/root/others/music     
+
+scp /home/space/music/1.mp3 username@ip/home/root/others/music/001.mp3
+
+scp -r /home/space/music/ username@ip:/home/root/others/music_new
+```
+
+## scp 和 rsync 的区别
+
+scp是相当于复制，黏贴，如果有的话是覆盖，比较耗时间，不智能。
+
+rsync是复制，如果有重复的文件，会直接跳过，而且他自己的算法优化。
+
+scp是把文件全部复制过去，当文件修改后还是把所有文件复制过去，rsync 第一次是把所有文件同步过去，当文件修改后，只把修改的文件同步过去。
