@@ -14,6 +14,8 @@
 
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.min.css"> -->
   <!-- <link rel="stylesheet" href="path/to/prismjs-theme.css"> -->
+  <!-- 评论 -->
+  <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css">
 
   <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -57,10 +59,24 @@
   <script src="//unpkg.com/prismjs/components/prism-bash.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-php.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+  <!-- 评论 -->
+  <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('sw.js')
     }
+  </script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: 'c45ce9c2552d9ff73edc',
+      clientSecret: '40a6e1f1dd76db156888be20354423ae6d0b237d',
+      repo: 'https://github.com/xingwenl',
+      owner: 'xingwenl',
+      admin: ['https://github.com/xingwenl/blogs'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    })
   </script>
 </body>
 </html>
