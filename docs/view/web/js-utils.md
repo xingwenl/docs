@@ -153,3 +153,11 @@ function throttle(method, wait, {leading = true, trailing = true} = {}) {
     return throttled
 }
 ```
+## 排序
+```js
+var a = [{name: 'a'},{name: 'd'},{name: 'c'},{name: 'b'}]
+
+a.sort((a, b) => {
+	return a.name.localeCompare(b.name)
+})
+```

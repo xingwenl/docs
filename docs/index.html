@@ -27,7 +27,7 @@
       homepage: '_home.md',
       name: 'XINGWEN',
       nameLink: '#/README',
-      repo: 'https://github.com/xingwenl',
+      repo: 'https://github.com/xingwenl/docs',
       loadNavbar: true,
       coverpage: true,
       loadSidebar: true,
@@ -62,21 +62,23 @@
   <!-- 评论 -->
   <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+  <script>
+    const gitalk = new Gitalk({
+        githubID: "https://github.com/xingwenl",
+      clientID: 'c45ce9c2552d9ff73edc',
+      clientSecret: '40a6e1f1dd76db156888be20354423ae6d0b237d',
+      repo: 'docs',
+      owner: 'docs',
+      admin: ['xingwenl'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    })
+  </script>
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('sw.js')
     }
-  </script>
-  <script>
-    const gitalk = new Gitalk({
-      clientID: 'c45ce9c2552d9ff73edc',
-      clientSecret: '40a6e1f1dd76db156888be20354423ae6d0b237d',
-      repo: 'https://github.com/xingwenl',
-      owner: 'xingwenl',
-      admin: ['https://github.com/xingwenl/blogs'],
-      // facebook-like distraction free mode
-      distractionFreeMode: false
-    })
   </script>
 </body>
 </html>

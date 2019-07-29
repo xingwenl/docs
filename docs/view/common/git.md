@@ -86,13 +86,17 @@ git branch --set-upstream-to=origin/master
 ```
 
 ## 常见问题
-.gitignore 失效
+
+### .gitignore 失效
 ```
 git rm -r --cached .
 git add .
 git commit -m 'We really don't want Git to track this anymore!'
 git rm --cached logs/xx.log
 ```
+### 删除大文件
+
+> [地址](https://www.jianshu.com/p/fe3023bdc825)
 
 ## Github 搭建Github Pages
 
