@@ -16,3 +16,5 @@
     - [clipboard.js](https://clipboardjs.com/)
     - [crypto.js](https://www.npmjs.com/package/crypto-js)
     - [exif.js](https://www.npmjs.com/package/exif-js)
+    - [rxjs.js](https://rxjs-cn.github.io)
+    - [Immutable.js]()
