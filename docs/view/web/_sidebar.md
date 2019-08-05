@@ -10,5 +10,5 @@
 * [js常用方法](view/web/js-utils.md)
 * [ServiceWorker](view/web/sw.md)
 * [HTMl](view/web/HTML5.md)
-* [JavaScript](view/web/JavaScript.md)
+* [JavaScript](view/web/javascript/JavaScript.md)
 
