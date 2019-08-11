@@ -5,6 +5,7 @@
 * [数据库](view/database/database.md)
 * [其他](view/else/else.md)
 * [配置](view/config/config.md) -->
+* [App](view/app/app.md)
 * [web](view/web/web.md)
 * [后端](view/backend/backend.md)
 * [常用](view/common/common.md)

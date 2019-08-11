@@ -1,2 +1,3 @@
 * [react-native](view/app/react-native/react-native.md)
-* [配置](view/config/config.md)
+* [lib](view/app/react-native/lib.md)
+
