@@ -5,10 +5,5 @@
 * [react](view/web/react/react.md)
 * [npm相关](view/web/npm/npm.md)
 * [配置](view/config/config.md) -->
-* [nuxt](view/web/nuxt.md)
-* [TypeSript](view/web/ts.md)
-* [js常用方法](view/web/js-utils.md)
-* [ServiceWorker](view/web/sw.md)
-* [HTML](view/web/HTML5.md)
-* [JavaScript](view/web/javascript/JavaScript.md)
+* [api](view/web/utils/api.md)
 
