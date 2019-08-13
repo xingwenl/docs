@@ -169,6 +169,22 @@ export const showImagePicker = (options = {}) => {
 
 > [react-native-keyboard-mgr](https://www.npmjs.com/package/react-native-keyboard-mgr)
 
+```js
+import KeyBorardManager from 'react-native-keyboard-mgr'
+import React, { PureComponent } from 'react'
+
+class App extends PureComponent {
+    componentDidMount() {
+
+        // 开启
+        KeyBorardManager.setEnabled(true)
+
+        // 键盘上的工具栏
+        KeyBorardManager.setEnableAutoToolbar(true)
+    }
+}
+```
+
 ## 字体
 
 > [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons)
@@ -179,6 +195,8 @@ export const showImagePicker = (options = {}) => {
 
 ```js
 import * as WeChat from "react-native-wechat";
+
+// data 一般服务器给
 export const wxPay = (data, callback) => {
     WeChat.isWXAppInstalled()
     .then((isInstalled) => {
