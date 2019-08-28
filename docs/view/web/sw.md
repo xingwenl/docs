@@ -12,4 +12,6 @@ Service Worker 是一种 Web Worker。它本质上是一个与主浏览器线程
 
 > [参考](http://vanessa.b3log.org/sw-in-pwa-experience)
 
+> 查看谷歌worker chrome://serviceworker-internals/
+
 > 睡觉了  :100:
