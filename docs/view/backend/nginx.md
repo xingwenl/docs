@@ -236,7 +236,13 @@ server {
 
 ```
 
+## vue-react history模式
 
+```bash
+location / {
+   try_files $uri /index.html;
+}
+```
 
 
 ### nginx 错误提示
