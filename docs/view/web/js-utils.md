@@ -161,3 +161,14 @@ a.sort((a, b) => {
 	return a.name.localeCompare(b.name)
 })
 ```
+## 随机数组
+```js
+Array.prototype.shuffle = function() {
+  let m = this.length, i;
+  while (m) {
+    i = (Math.random() * m--) >>> 0;
+    [this[m], this[i]] = [this[i], this[m]]
+  }
+  return this;
+}
+```
