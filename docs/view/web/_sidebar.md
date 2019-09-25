@@ -10,5 +10,7 @@
 * [js常用方法](view/web/js-utils.md)
 * [ServiceWorker](view/web/sw.md)
 * [HTML](view/web/HTML5.md)
-* [JavaScript](view/web/javascript/JavaScript.md)
-
+* [js](view/web/javascript/JavaScript.md)
+* [常用库](view/web/libs/_sidebar.md)
+* [CSS](view/web/CSS.md)
+* [vue](view/web/vue/vue.md)

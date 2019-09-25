@@ -1,6 +1,8 @@
 # JavaScript 其他
 
-##### 1. [原生ajax请求](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)：
+## 1. 原生ajax请求
+
+> [原生ajax请求](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)
 
 ```
   var config = {
@@ -16,13 +18,13 @@
 ```
 
 
-##### 2. input标签获取焦点居中：
+## 2. input标签获取焦点居中：
 
 ```
   input.scrollIntoView(); <!-- (不好使) -->
 ```
 
-##### 3. 中文输入法事件：
+## 3. 中文输入法事件：
 
 ```
   compositionstart
@@ -30,7 +32,7 @@
   compositionupdate
 ```
 
-##### 4. Selection对象：
+## 4. Selection对象：
 
 页面焦点相关
 
