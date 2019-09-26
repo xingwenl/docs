@@ -77,6 +77,8 @@ react-native run-android
 
 ## 遇到的问题
 
+### 版本号别错
+
 ### 安卓版本问题
 ```bash
 # ${your ReactNativeProject}/android/build.gradle 文件
@@ -94,4 +96,29 @@ dependencies {
     # 旧的 compile project(':@remobile_react-native-splashscreen')
     api project(':@remobile_react-native-splashscreen')
 }
+```
+
+### 安卓不能微信分享
+
+AndroidManifest里的 package 包名 和 app/build.gradle 里的 applicationId 需要一致， 并且签名需要正式签名，打debug版本时需要正式签名 
+
+```xml
+<!-- AndroidManifest.xml -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.baoming">
+</manifest>
+```
+```js
+android {
+    defaultConfig {
+        applicationId "com.baoming"
+    }
+}
+```
+
+### iOS webview 不能播放视频 
+
+```js
+// 设为wkwebview
+useWebKit={true}
 ```
