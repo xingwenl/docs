@@ -227,7 +227,62 @@ export const wxPay = (data, callback) => {
         }
     });
 }
+
+// 登录
+// 安卓需要配置回调
+// iOS 如果收不到回调，可能被其他库给拿去了，比如我就是引入了友盟分享，后面改成 这种了，一直收不到回调 
+export const wxLogin = () => {
+
+    WeChat.isWXAppInstalled()
+        .then((isInstalled) => {
+            if (isInstalled) {
+                // 应用授权作用域，如获取用户个人信息则填写snsapi_userinfo
+                let scope = 'snsapi_userinfo';
+                // 用于保持请求和回调的状态，授权请求后原样带回给第三方。该参数可用于防止csrf攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加session进行校验
+                let state = 'lxw';
+
+                // 这个请求只能获取code ，你自己去请求微信的接口，获取 access_token 和 openid
+                // 返回参数 ，
+                /*
+                    {
+                        appid: "wxf5201cdb7a4b7096"
+                        code: "061xI7x41m5lZS1tYBw41CW1x41xI7xm"
+                        errCode: 0
+                        state: "lxw"
+                        type: "SendAuth.Resp"
+                    }
+                */
+                WeChat.sendAuthRequest(scope, state)
+                .then(res => {
+                    if (res.errCode === 0) {
+                        // 获取 openid
+                        this.getOpenid(res.code)
+                    }
+                })
+                .catch(err => {
+                })
+            }
+
+        })
+
+    getOpenid() {
+        // 这个请求是获取access——token
+        // https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+        // 返回参数
+        /*
+        {
+            "access_token": "ACCESS_TOKEN",
+            "expires_in": 7200,
+            "refresh_token": "REFRESH_TOKEN",
+            "openid": "OPENID",
+            "scope": "SCOPE",
+            "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
+        }
+        */
+    }
+}
 ```
+> [微信登录文档](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_Login/Development_Guide.html)
 
 ## 热更新
 
@@ -246,4 +301,17 @@ rn-fetch-blob 解决上传问题
     - [Ant Design Mobile](https://mobile.ant.design/)
     - [React Navigation](https://reactnavigation.org/docs/zh-Hans/getting-started.html)
     - [android启动页](http://www.jianshu.com/p/da658aceeb44)
+
+
+
+## 错误
+
+`Attempted to register RCTBridgeModule class RNSplashScreen for the name 'SplashScreen', but name was already registered by class RCTSplashScreen`
+
+我引入了两个 SplashScreen react-native-splash-screen 和 @remobile/react-native-splashscreen ， 删除一个react-native-splash-screen，
+
+xcode > Build Phases > LinkBinary With Libraries 删除 react-native-splash-screen相关
+xcode > Build Settings > Header Search Paths、Library Search Paths、 Framework Search Paths 删除 react-native-splash-screen相关
+
+其他情况类似
 
