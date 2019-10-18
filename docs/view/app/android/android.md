@@ -1,5 +1,8 @@
 # Android
 
+
+> [安卓签名工具](https://res.wx.qq.com/open/zh_CN/htmledition/res/dev/download/sdk/Gen_Signature_Android2.apk)
+
 * 基础文档
     - [android 文档](http://www.android-doc.com/reference/packages.html)
 

@@ -1,5 +1,10 @@
 # 常用的三方库
 
+## UI库
+
+> [ant](https://mobile.ant.design)
+
+
 ## 启动页
 解决启动白屏， 这个可以在启动时设定一张图片，，在数据加载完成时，隐藏此图片，
 
@@ -159,7 +164,96 @@ export const showImagePicker = (options = {}) => {
 
 > [react-native-image-zoom-viewer](https://www.npmjs.com/package/react-native-image-zoom-viewer)
 
-## 图片懒加载
+```bash
+yarn add react-native-image-zoom-viewer
+```
+
+```js
+// 重新创建个页面   ImageShow.js,
+import ImageViewer from 'react-native-image-zoom-viewer';
+// 这个是做图片缓存
+import { CacheImage } from 'react-native-rn-cacheimage';
+
+/**
+ * Created by sybil052 on 2017/7/6.
+ * 照片大图预览
+ */
+import React, {Component} from 'react';
+import {
+    View,
+    StyleSheet
+} from 'react-native';
+import ImageViewer from 'react-native-image-zoom-viewer';
+import { CacheImage } from 'react-native-rn-cacheimage';
+import { XinLoading } from '../../components';
+
+class ImageShow extends Component {
+    static navigationOptions = ({ navigation }) => {
+		return {
+			headerTransparent: true,
+			headerStyle: {
+				backgroundColor: 'transparent',
+				// evevation: 0,
+				borderBottomWidth: 0,
+			}
+		}
+	}
+    constructor(props) {
+        super(props);
+        this.state = {
+            images: [],
+            imageIndex: 1,
+        };
+    }
+    componentWillMount() {
+        // 上个界面传来的照片集合
+        const params = this.props.navigation.state.params;
+        const images = params.image;
+        const pageNum = params.num || 0;
+        this.setState({
+            images: images,
+            imageIndex: pageNum,
+        });
+    }
+
+    renderImage = (props) => {
+        return <CacheImage {...props}/>
+    }
+
+    loadingRender = (props) => {
+        return <XinLoading/>
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <ImageViewer
+                    imageUrls={this.state.images} // 照片路径
+                    enableImageZoom={true} // 是否开启手势缩放
+                    index={this.state.imageIndex} // 初始显示第几张
+                    failImageSource={require('../../assets/img/public/default.jpg')} // 加载失败图片
+                    onChange={(index) => {}} // 图片切换时触发
+                    renderImage={this.renderImage}
+                    loadingRender={this.loadingRender}
+                    onClick={() => { // 图片单击事件
+                        this.props.navigation.goBack();
+                    }}
+                />
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
+export default ImageShow;
+
+```
+
+## 图片缓存
 
 > [react-native-rn-cacheimage](https://www.npmjs.com/package/react-native-rn-cacheimage)
 
@@ -188,6 +282,23 @@ class App extends PureComponent {
 ## 字体
 
 > [react-native-vector-icons](https://www.npmjs.com/package/react-native-vector-icons)
+
+```bash
+yarn add react-native-vector-icons
+react-native link react-native-vector-icons
+```
+
+```js
+// 可以引入两种不同的图标
+import Icon from 'react-native-vector-icons/FontAwesome'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+
+<Icon color="#ee1a1a" name="check-square" size={12}/> 
+<FontAwesome5Icon name="square" color="#ee1a1a" size={12}/>
+```
+
+> [所有的字体图标](https://oblador.github.io/react-native-vector-icons/) [参考文章](https://blog.csdn.net/f409031mn/article/details/79522129)
+
 
 ## 微信支付 登陆 
 
@@ -283,6 +394,90 @@ export const wxLogin = () => {
 }
 ```
 > [微信登录文档](https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_Login/Development_Guide.html)
+
+## 支付宝
+
+> [react-native-yunpeng-alipay](https://www.npmjs.com/package/react-native-yunpeng-alipay)
+
+```bash
+yarn add react-native-yunpeng-alipay
+react-native link react-native-yunpeng-alipay
+```
+<!-- tabs:start -->
+
+##### ** js **
+```js
+import Alipay from 'react-native-yunpeng-alipay';
+
+// orderString 后台传的
+// 参考参数 app_id=2017123123123&method=alipay.trade.app.pay&format=JSON&charset=utf8&sign_type=RSA2&timestamp=2019-08-17+16%3A31%3A00&version=1.0&notify_url=https%3A%2F%2Fxin-api.ctl.pub%2Fzfbcall&biz_content=%7B%22out_trade_no%22%3A%225d57bb44664cd%22%2C%22total_amount%22%3A0.01%2C%22subject%22%3A%22%5Cu652f%5Cu4ed8%5Cu6d4b%5Cu8bd5%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22timeout_express%22%3A%222h%22%7D&sign=JXDMEDE7aGjWN8
+export const aliPay = (orderString, callback) => {
+    Alipay.pay(orderString).then(function(data){
+        if (data.length && data[0].resultStatus) {
+            /*处理支付结果*/
+            switch (data[0].resultStatus) {
+               case "9000":
+                    callback && callback('success', '支付成功')
+                 break;
+               case "8000":
+                    callback && callback('error', '支付结果未知,请查询订单状态')
+                 break;
+               case "4000":
+                    callback && callback('error', '订单支付失败')
+                 break;
+               case "5000":
+                    callback && callback('error', '重复请求')
+                 break;
+               case "6001":
+                    callback && callback('error', '取消支付')
+                 break;
+               case "6002":
+                    callback && callback('error', '网络连接出错')
+                 break;
+               case "6004":
+                    callback && callback('error', '支付结果未知,请查询订单状态')
+                 break;
+               default:
+                    callback && callback('error', '支付失败')
+                 break;
+             }
+           } else {
+                callback && callback('error', '支付失败')
+           }
+    }, function (err) {
+        callback && callback('error', '支付失败')
+    });
+}
+
+```
+##### ** iOS **
+
+- 在 TARGETS/Build Phases/Link Binary WIth Libraries 添加下面模块
+    - CoreMotion.framework
+    - CoreTelephony.framework
+    - libc++
+    - libz
+
+- 在info.plist文件 设置URL Schema， `alipay你的appid`
+
+    ![url Schema](../../../assets/rn/alipay-1.jpg)
+
+AppDelegate.m
+```c
+#import "AlipayModule.h"
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  ...
+
+  [AlipayModule handleCallback: url];
+  return true;
+  ...
+}
+```
+##### ** Android **
+android
+<!-- tabs:end -->
+
 
 ## 热更新
 

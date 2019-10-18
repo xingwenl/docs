@@ -6,16 +6,16 @@
 ```bash
 npm init #会引导你创建一个package.json文件，包括名称、版本、作者这些信息等
 npm install moduleNames # 安装Node模块
-eg:  npm install express
+#eg:  npm install express
 npm install <name> -g  # 全局安装Node模块
 npm install <name> --save # 将信息写入package.json中项目路径中如果有package.json文件
 npm view moduleNames # 查看node模块的package.json文件夹
 npm list # 查看当前目录下已安装的node包
-1.查看所有高级的npm moudles
+# 1.查看所有高级的npm moudles
 
 npm list --depth=0
 
-2.查看所有全局安装的模块
+# 2.查看所有全局安装的模块
 
 npm list --depth=0 -global
 npm update moduleName # 更新node模块
@@ -24,13 +24,18 @@ npm uninstall moudleName # 卸载node模块
 
 npm -v # 查看npm安装的版本
 
-3.更新管理
+# 3.更新管理
 npm install -g npm-check-updates
 # 更新node模块
 npm-check-updates moudleName -a 
 # 更新全部
 ncu -a
 
+# 4.config
+# 设置淘宝源
+npm config get registry
+npm config set registry https://registry.npm.taobao.org
+npm config set disturl https://npm.taobao.org/dist
 ```
 
 > [http://www.cnblogs.com/linjiqin/p/3765772.html](URL)
@@ -97,3 +102,22 @@ server {
 	}
 }
 ```
+
+
+## 问题
+
+```bash
+info There appears to be trouble with your network connection. Retrying...
+```
+可能是代理出现了问题
+
+```bash
+npm config rm proxy 
+npm config rm https-proxy
+
+# 设置代理
+yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+或者
+npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+```
+

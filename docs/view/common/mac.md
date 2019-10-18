@@ -94,3 +94,19 @@ kill -9 [pid]
 du -shc *
 du -sh *
 ```
+
+## 清理垃圾
+/Library/Developer/Xcode
+- DerivedData
+- Archives
+
+
+```bash
+# /Library/Developer/Xcode
+DerivedData
+Archives
+iOS DeviceSupport
+/Devices
+
+# 这四个可以删
+```
