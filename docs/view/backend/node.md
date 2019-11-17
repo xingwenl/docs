@@ -1,7 +1,7 @@
 
-## node 简单命令
+# node 简单命令
 
-- **npm**
+## npm
 
 ```bash
 npm init #会引导你创建一个package.json文件，包括名称、版本、作者这些信息等
@@ -34,8 +34,65 @@ ncu -a
 # 4.config
 # 设置淘宝源
 npm config get registry
+
 npm config set registry https://registry.npm.taobao.org
 npm config set disturl https://npm.taobao.org/dist
+npm config set electron_mirror https://npm.taobao.org/mirrors/electron/
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
+
+
+yarn config set registry https://registry.npm.taobao.org -g
+yarn config set disturl https://npm.taobao.org/dist -g
+yarn config set electron_mirror https://npm.taobao.org/mirrors/electron/ -g
+yarn config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ -g
+yarn config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/ -g
+yarn config set chromedriver_cdnurl https://cdn.npm.taobao.org/dist/chromedriver -g
+yarn config set operadriver_cdnurl https://cdn.npm.taobao.org/dist/operadriver -g
+yarn config set fse_binary_host_mirror https://npm.taobao.org/mirrors/fsevents -g
+
+# 临时修改（只生效一次）
+yarn save 包的名字 --registry https://registry.npm.taobao.org/
+
+```
+### yrm 
+yrm是一个 yarn源管理器，允许你快速地在yarn源间切换
+`npm install -g yrm`
+
+#### 列出可选的源
+```
+yrm ls
+
+npm ---- https://registry.npmjs.org/
+cnpm --- http://r.cnpmjs.org/
+* taobao - https://registry.npm.taobao.org/
+nj ----- https://registry.nodejitsu.com/
+rednpm - http://registry.mirror.cqupt.edu.cn/
+npmMirror  https://skimdb.npmjs.com/registry/
+edunpm - http://registry.enpmjs.org/
+yarn --- https://registry.yarnpkg.com
+```
+带 * 的是当前使用的源
+
+
+#### 测试所有源的响应时间
+```
+yrm test
+npm ---- 784ms
+cnpm --- 290ms
+* taobao - 297ms
+nj ----- Fetch Error
+rednpm - Fetch Error
+npmMirror  1353ms
+edunpm - Fetch Error
+yarn --- Fetch Error
+```
+#### 切换
+切换到taobao镜像源
+```
+yrm use taobao
+
+YARN Registry has been set to: https://registry.npm.taobao.org/
 ```
 
 > [http://www.cnblogs.com/linjiqin/p/3765772.html](URL)
@@ -114,6 +171,7 @@ info There appears to be trouble with your network connection. Retrying...
 ```bash
 npm config rm proxy 
 npm config rm https-proxy
+yarn config delete proxy
 
 # 设置代理
 yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
