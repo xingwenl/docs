@@ -79,11 +79,44 @@ git:x:1000:1000::/home/git:/bin/git-shell
 # vim快捷键： 命令模式下：yy复制行， p 粘贴  0光标到行首 $到行尾 x删除一个字符  i进入插入模式 
 # 修改完后退出保存：  esc进入命令模式， 输入：:wq!   保存退出。
 ```
-## git 命令
-```
+## git 常用命令
+```bash
 # 本地分支与远程origin的分支进行关联处理
 git branch --set-upstream-to=origin/master
 ```
+#### 合并 git commit 提交信息
+```bash
+# 合并最近的 4 次提交纪录
+git rebase -i HEAD~4
+# 这个时候 自动进入vi模式
+
+pick cacc52da add: 1
+pick f072ef48 add: 2
+pick 4e84901a add: 3
+pick 8f33126c add: 4
+
+# 命令:
+# p, pick = 使用提交
+# r, reword = 使用提交，但修改提交说明
+# e, edit = 使用提交，但停止以便进行提交修补
+# s, squash = 使用提交，但和前一个版本融合
+# f, fixup = 类似于 "squash"，但丢弃提交说明日志
+# x, exec = 使用 shell 运行命令（此行剩余部分）
+# d, drop = 删除提交
+#
+
+# pick 修改为 s  把 2、3、4 修改到 1 上 ，可重新修改日志
+pick f072ef48 add: 1
+s 4e84901a add: 2
+s 8f33126c add: 3
+s 3f33126c add: 4
+
+# wq 保存并推出
+
+
+s 改成 edit  就是修改提交信息
+```
+
 
 ## 常见问题
 
