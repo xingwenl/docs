@@ -1,10 +1,3 @@
-/*
-* @Author: NiKai
-* @Date:   2018-12-04 12:24:49
-* @Last Modified by:   NiKai
-* @Last Modified time: 2018-12-04 12:24:53
-*/
-
 'use strict';
 
 /* ===========================================================
@@ -20,7 +13,8 @@ const HOSTNAME_WHITELIST = [
   self.location.hostname,
   'fonts.gstatic.com',
   'fonts.googleapis.com',
-  'unpkg.com'
+  'unpkg.com',
+  'script.hotjar.com'
 ]
 
 // The Util Function to hack URLs of intercepted requests
@@ -61,10 +55,11 @@ self.addEventListener('activate', event => {
  *
  *  void respondWith(Promise<Response> r)
  */
+console.log('[sw-self] ------- ', self);
 self.addEventListener('fetch', event => {
-    console.log(event)
   // Skip some of cross-origin requests, like those for Google Analytics.
   if (HOSTNAME_WHITELIST.indexOf(new URL(event.request.url).hostname) > -1) {
+    console.log(`[${event.request.method}] ----  ${event.request.url}`)
     // Stale-while-revalidate
     // similar to HTTP's stale-while-revalidate: https://www.mnot.net/blog/2007/12/12/stale
     // Upgrade from Jake's to Surma's: https://gist.github.com/surma/eb441223daaedf880801ad80006389f1
@@ -72,7 +67,7 @@ self.addEventListener('fetch', event => {
     const fixedUrl = getFixedUrl(event.request)
     const fetched = fetch(fixedUrl, { cache: 'no-store' })
     const fetchedCopy = fetched.then(resp => resp.clone())
-
+    console.log(`[sw-cached] ${cached}`)
     // Call respondWith() with whatever we get first.
     // If the fetch fails (e.g disconnected), wait for the cache.
     // If there’s nothing in cache, wait for the fetch.

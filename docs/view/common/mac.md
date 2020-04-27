@@ -95,6 +95,25 @@ du -shc *
 du -sh *
 ```
 
+## 其他命令行
+~/.bashrc是什么
+
+~/.bashrc:该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取.（每个用户都有一个.bashrc文件，在用户目录下）
+
+~/.bash_profile是什么？
+
+~/.bash_profile:每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件.
+```bash
+# 设置别名
+
+# 修改文件
+vim ~/.bash_profile
+# 下方加入 alias ys="yarn start"， 保存
+# 使别名命令生效
+source ~/.bash_profile
+# 命令行输入 ys 就相当于 yarn start
+```
+
 ## 清理垃圾
 /Library/Developer/Xcode
 - DerivedData

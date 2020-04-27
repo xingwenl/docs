@@ -4,7 +4,7 @@
 
 > [原生ajax请求](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)
 
-```
+```js
   var config = {
     Method: 'post' | 'get',
     Header: {},

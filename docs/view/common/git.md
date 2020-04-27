@@ -98,6 +98,20 @@ git rm --cached logs/xx.log
 
 > [地址](https://www.jianshu.com/p/fe3023bdc825)
 
+### GIT的HTTP方式免密pull、push
+```bash
+cd ~
+touch .git-credentials
+vim .git-credentials
+# .git-credentials文件输入下面格式
+https://{username}:{password}@github.com
+# 终端输入
+git config --global credential.helper store
+# 打开~/.gitconfig文件，会发现多了一项:
+[credential]
+helper = store
+```
+
 ## Github 搭建Github Pages
 
 ### 进入设置
