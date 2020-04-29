@@ -1,5 +1,5 @@
 * [npm](view/web/npm/npm.md)
 * [webpack](view/web/npm/webpack.md)
 * [babelic](view/web/npm/babelic.md)
-* [babelic](view/web/npm/npm-publish.md)
+* [发布](view/web/npm/npm-publish.md)
 * [配置](view/config/config.md)

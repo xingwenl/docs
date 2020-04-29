@@ -67,7 +67,6 @@ module.exports = config;
 + "build:umd:min": "cross-env NODE_ENV=umd:min webpack",
 + "build:iife": "cross-env NODE_ENV=iife webpack",
 + "build:iife:min": "cross-env NODE_ENV=iife:min webpack",
-  # 整合打包命令
 + "build": "npm run build:cjs && npm run build:umd && npm run build:umd:min && npm run build:iife && npm run build:iife:min"
 },
 ```
@@ -99,5 +98,17 @@ test
 webpack.config.js
 ```
 
+
+```bash
+# 需要设置回到 npm，发布必须转到 npm
+npm config set registry https://registry.npmjs.org/
+
+# 查看用户
+npm whoami
+# 登录 没有 就去注册
+npm login
+# 发布
+npm publish
+```
 > https://www.bbsmax.com/A/MyJxyoEA5n/
 > https://www.bbsmax.com/A/amd0wjgD5g/
