@@ -1,6 +1,9 @@
 # single-spa-qiankun
 基于single-spa的qiankun 框架
 
+> [项目地址](https://github.com/xingwenl/single-spa-qiankun)
+> [demo](http://spa-root.dev.lixw.top/)
+
 ## 启动
 进入子项目 vue-spa
 ```bash
@@ -113,7 +116,7 @@ export async function update(props) {
 ```
 因为这是基于`single-spa`的， 所以可以在`single-spa`里看到 [其他声明周期的函数](https://single-spa.js.org/docs/building-applications/#registered-application-lifecycle)
 
-路由修改
+#### 路由修改
 ```js
 const router = new VueRouter({
   mode: "history",
@@ -122,7 +125,36 @@ const router = new VueRouter({
 });
 ```
 
-webpack 配置
+#### 样式隔离
+
+```bash
+# 安装
+yarn add postcss-selector-namespace -D
+```
+
+在postcss.config.js中加入以下配置，如果没有该js则创建一个
+```js
+module.exports = {
+  plugins: {
+    // postcss-selector-namespace: 给所有css添加统一前缀，然后父项目添加命名空间
+    'postcss-selector-namespace': {
+      namespace(css) {
+        // 指定的样式可以不需要添加命名空间 类似于下面
+        // if (css.includes('antd.less')) return '';
+        return '#vueSpaApp' // 返回要添加的类名
+      }
+    },
+  }
+}
+```
+成功后的样式
+```css
+#vueSpaApp #nav {
+  padding: 30px;
+}
+```
+
+#### webpack 配置
 ```js
 const { name } = require("./package");
 const port = 9001;
@@ -154,18 +186,14 @@ module.exports = {
 > [webpack 相关说明](https://webpack.js.org/configuration/output/#outputlibrary)
 
 ### 注意 
-子项目打包后，需要配置跨域
+子项目打包后，如果子项目和主项目不是同一个域名，需要配置跨域
 
 nginx
 ```bash
 location / {  
-    add_header Access-Control-Allow-Origin *;
-    add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
-    add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
-
-    if ($request_method = 'OPTIONS') {
-        return 204;
-    }
+  add_header Access-Control-Allow-Origin *;
+  add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+  add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
 }
 
 # 如果上面不行， 也可以 直接写在server里
