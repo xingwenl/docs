@@ -22,6 +22,48 @@ apple-touch-icon 标签支持sizes属性，可以用来放置对应不同的设�
 
 apple-touch-icon-precomposed 可不做高光处理
 
+### apple-mobile-web-app-capable
+是设置web应用是否是全屏模式运行
+```html
+<meta name="apple-mobile-web-app-capable" content="yes">
+```
+
+### 启用或禁用自动识别电话
+```html
+<meta name="format-detection" content="telephone=no">
+
+<meta content="telephone=no,email=no" name="format-detection">
+```
+
+### 顶部状态栏背景色
+```html
+<meta name="apple-mobile-web-app-status-bar-style"content="black"/>
+```
+
+### 设置缓存
+手机页面通常在第一次加载后会进行缓存，然后每次刷新会使用缓存而不是去重新向服务器发送请求。如果不希望使用缓存可以设置no-cache。
+```html
+<meta http-equiv="Cache-Control"content="no-cache"/>
+```
+
+### 禁止复制、选中文本
+```css
+-webkit-user-select：none；
+-moz-user-select：none；
+-khtml-user-select：none;
+user-select:none;
+```
+### 旋转屏幕时，字体大小自适应问题
+```css
+-webkit-text-size-adjust:100%;
+```
+
+### 禁止缩放
+```html
+<meta name="viewport"content="user-scalable=0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+```
+
 ### input type=file
 
 ```html
@@ -43,3 +85,7 @@ apple-touch-icon-precomposed 可不做高光处理
     formData.append('img', document.getElementById("file").files[0])
 </script>
 ```
+
+## 参考文献
+
+> [移动端常见的一些兼容性问题](https://zhuanlan.zhihu.com/p/24890540)
