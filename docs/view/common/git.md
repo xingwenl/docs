@@ -121,12 +121,19 @@ s 改成 edit  就是修改提交信息
 ## 常见问题
 
 ### .gitignore 失效
-```
+```bash
 git rm -r --cached .
 git add .
 git commit -m 'We really don't want Git to track this anymore!'
 git rm --cached logs/xx.log
 ```
+
+### 文件过大 传不上去
+提交文件大小的上限设置大点
+```bash 
+git config --global http.postBuffer 524288000
+```
+
 ### 删除大文件
 
 > [地址](https://www.jianshu.com/p/fe3023bdc825)

@@ -379,7 +379,30 @@ AppDelegate.m
 }
 ```
 ##### ** Android **
-android
+
+解决报错信息
+```java
+public class AlipayPackage implements ReactPackage {
+
+    @Override
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+        List<NativeModule> modules = new ArrayList<>();
+        modules.add(new AlipayModule(reactContext));
+        return modules;
+    }
+// 这段注释
+//    @Override
+//    public List<Class<? extends JavaScriptModule>> createJSModules() {
+//        return Collections.emptyList();
+//    }
+
+    @Override
+    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+        return Collections.emptyList();
+    }
+}
+```
+
 <!-- tabs:end -->
 
 
