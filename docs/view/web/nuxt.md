@@ -31,8 +31,8 @@ yarn run dev
   ```bash
   # 第一次需要安装依赖
   yarn install
-  # pm2 启动 --name "nuxt" --  这是设置名称
-  pm2 start yarn --name "nuxt" --run start
+  # pm2 启动 --name "name" --  这是设置名称
+  pm2 start yarn --name <name> -- run start
   ```
 
   

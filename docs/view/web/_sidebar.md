@@ -18,4 +18,5 @@
 * [eslint](view/web/eslint.md)
 * [single-spa](view/web/single-spa/_sidebar.md)
 * [常用正则](view/web/validation.md)
+* [echart](view/web/echart.md)
 
