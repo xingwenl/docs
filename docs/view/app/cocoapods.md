@@ -25,3 +25,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 ```
 
 > 参考 [CocoaPods 镜像使用帮助](https://mirror.tuna.tsinghua.edu.cn/help/CocoaPods/)
+
+
+
+> source 'https://gitee.com/mirrors/CocoaPods-Specs.git'

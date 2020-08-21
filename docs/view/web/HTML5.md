@@ -89,3 +89,7 @@ user-select:none;
 ## 参考文献
 
 > [移动端常见的一些兼容性问题](https://zhuanlan.zhihu.com/p/24890540)
+
+### position: fixed 失效
+
+> 上层元素有的使用了transform: translate(0, 0);导致position: fixed功能失效了。
