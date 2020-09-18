@@ -1,5 +1,5 @@
 (function (w) {
-  function registerSW(path = '/sw.js') {
+  function registerSW(path = './sw.js') {
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register(path).then((registration) => {
             console.log("Registered events at scope: ", registration.scope);
