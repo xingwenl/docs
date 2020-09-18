@@ -179,3 +179,10 @@ yarn config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 ```
 
+如果更新中途或者更新完执行node -v报错如下：
+```bash
+dyld: initializer function 0x0 not in mapped image for /usr/local/bin/node
+```
+解决办法：删除/usr/local/n/versions/node目录下的所有版本，然后使用n命令重新安装新的node版本就行了。
+
+

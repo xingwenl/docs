@@ -106,48 +106,11 @@
                 distractionFreeMode: false
             });
         </script>
+        <script src="./swctl.js"></script>
         <script>
-            const xw_sw_v = '1.0.3'
-            if (typeof navigator.serviceWorker !== "undefined") {
-                navigator.serviceWorker.register("sw.js").then(async res => {
-                    // if (localStorage.getItem('xw_sw_v') !== xw_sw_v) {
-                    //     await res.update();
-                    //     await res.unregister();
-                    //     console.log(`[sw-unregister] sw 版本升级，先注销`)
-                    // }
-                    // localStorage.setItem('xw_sw_v', xw_sw_v)
-                    console.log(`[sw-register-then] 成功`, res)
-                }).catch(err => {
-                    console.log('[sw-register-catch] 失败', err)
-                });
-
-            //     navigator.serviceWorker.register({
-            //     onUpdate: async (registration) => {
-            //         console.log('网站需要更新')
-            //         // await registration.update(); // 这里很重要
-            //         // message.info("网站更新完成, 请刷新页面: " + moment().format('YYYY-MM-DD HH:mm:ss'), 0.5, () => {
-            //         //     // window.location.reload();
-            //         // });
-            //     },
-            //     onSuccess: () => {},
-            // });
-
-
-            navigator.serviceWorker.addEventListener('controllerchange', () => {
-                console.log('网站需要更新')
-            });
-
-                navigator.serviceWorker.getRegistrations()
-                    .then((registrations) => {
-                        if (localStorage.getItem('xw_sw_v') !== xw_sw_v) {
-                            for(let registration of registrations) {  
-                                registration.unregister();
-                                console.log(`[sw-unregister] sw 版本升级，先注销`)
-                            }
-                        }
-                        localStorage.setItem('xw_sw_v', xw_sw_v)
-                    })
-            }
+            window.addEventListener("load", () => {
+                registerSW();
+            })
         </script>
         <script>
             (function(h, o, t, j, a, r) {
