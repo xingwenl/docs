@@ -41,8 +41,10 @@ nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http�
 
 `tar -zxvf nginx-1.10.1.tar.gz`
 
-使用默认配置
+进入文件夹
+`cd nginx-1.10.1`
 
+使用默认配置
 `./configure`
 
 ### 编译安装
@@ -50,6 +52,18 @@ nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http�
 `make`
 
 `make install`
+
+### 设置全局环境变量
+
+```bash
+vi /etc/profile
+# 设置nginx全局环境变量
+PATH=$PATH:/usr/local/nginx/sbin
+export PATH
+
+# 让配置文件重新生效一下即可
+source /etc/profile
+```
 
 ### 启动、停止nginx
 
@@ -202,7 +216,7 @@ server {
     index index.html;
     root /home/wwwroot/ssl; # 确保网站根目录正确且存在
 
-    ssl on;
+    # ssl on; nginx1.8 后 不需要了 
     ssl_certificate /usr/local/nginx/conf/ssl/fullchain.cer; # 需要替换成你生成的路径
     ssl_certificate_key /usr/local/nginx/conf/ssl/ssl.lixw.top.key; # 需要替换成你生成的路径
     ssl_session_timeout 5m;
@@ -275,14 +289,26 @@ server {
 ## gzip
 Gzip 是互联网上非常普遍的一种数据压缩格式，对于纯文本来说可以压缩到原大小的 40%，可以节省大量的带宽。不过需要注意的是，启用 Gzip 所需的 HTTP 最低版本是 1.1。
 
+
 ```bash
+# http全局
+http {
+  gzip on; # 启用压缩
+  gzip_min_length 1k; # 超过1K的文件才压缩
+  gzip_http_version 1.1; # 启用gzip压缩所需的HTTP最低版本
+  gzip_comp_level 9; # 压缩级别，压缩比率越高，文件被压缩的体积越小
+  gzip_types text/css application/javascript; # 进行压缩的文件类型 # text/plain application/x-javascript text/css application/xml;
+  gzip_disable "MSIE [1-6]\.";       #配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）
+  gzip vary on;    #选择支持vary header；改选项可以让前端的缓存服务器缓存经过gzip压缩的页面; 这个可以不写，表示在传送数据时，给客户端说明我使用了gzip压缩
+}
+# 单个servers
 location ~ .*\.(jpg|png|gif)$ {
     gzip off;
     root /home/www/images;
 }
 location ~ .*\.(html|js|css)$ {
     gzip on; # 启用压缩
-    gzip_main_length 1k; # 超过1K的文件才压缩
+    gzip_min_length 1k; # 超过1K的文件才压缩
     gzip_http_version 1.1; # 启用gzip压缩所需的HTTP最低版本
     gzip_comp_level 9; # 压缩级别，压缩比率越高，文件被压缩的体积越小
     gzip_types text/css application/javascript; # 进行压缩的文件类型
@@ -313,6 +339,8 @@ server {
     location / {
         # 设置对应的共享内存区域 burst最大请求数阈值 nodelay不希望超过的请求被延迟
         limit_req zone=req_zone burst=5 nodelay;
+
+        client_max_body_size 800M; // #缓冲区代理缓冲用户端请求的最大字节数
     }
 }
 ```
@@ -413,6 +441,25 @@ server {
     }
 }
 ```
+
+## 上传最大文件限制 
+
+```
+server {
+    listen 80;
+    server_name yueyou.api.l-xw.cn;
+    location / {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Nginx-Proxy true;
+        proxy_cache_bypass $http_upgrade;
+        proxy_pass http://yueyou; #反向代理
+        client_max_body_size 800M; // #缓冲区代理缓冲用户端请求的最大字节数
+    }
+}
+```
 ### 相关资料
 1. Cache-control策略
 
@@ -485,3 +532,19 @@ cp ./objs/nginx /usr/local/nginx/sbin/
 > [https://www.jianshu.com/p/717f2b88d057](URL)
 > [http://www.linuxidc.com/Linux/2016-09/134907.htm](URL)
 
+- 启动Nginx时候报错：nginx: [error] open() “/usr/local/nginx/logs/nginx.pid” failed (2: No such file or directory)
+情况一：nginx.conf的nginx.pid被注释了
+
+进入nginx.conf目录编辑
+
+`sudo vi /usr/local/nginx/conf/nginx.conf`
+
+重新启动
+
+`nginx -s reload `
+
+情况二：没有指定配置目录
+
+输入来使用指定nginx.conf文件的方式重启nginx（首先保证上面第一种情况的pid没有被注释，否则可能前两次能打开，但是以后还是会报错的）
+
+`sudo /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf`

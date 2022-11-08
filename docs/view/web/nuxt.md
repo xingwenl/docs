@@ -23,6 +23,7 @@ yarn run dev
 - 选择部署的文件 
 
   - `.nuxt/`
+  - `server/`
   - `package.json`
   - `nuxt.config.js`
 

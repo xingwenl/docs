@@ -136,3 +136,25 @@ useWebKit={true}
 版权声明：本文为CSDN博主「非動ご」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/r122555/java/article/details/96335357
 ```
+
+### 使用@装饰器
+```bash
+# 安装
+npm i -D babel-preset-stage-2
+npm i -D babel-preset-react-native-stage-0
+
+# 在.babelrc 文件添加如下配置
+{
+    "presets": [
+        "react-native-stage-0/decorator-support"
+    ]
+}
+
+# 以上不行 则 安装babel7插件
+npm i -D @babel/plugin-proposal-decorators
+
+# 在.babelrc 文件添加如下配置
+"plugins": [
+    ["@babel/plugin-proposal-decorators", {"legacy": true}]
+]
+```

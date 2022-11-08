@@ -227,7 +227,7 @@ rsync -av --delete --exclude-from=www-rsync-rules / remotehost:/dest/dir
 -g, --group | 保持文件属组信息
 -0, --owner | 保持文件属主信息(super-user only)
 -D | 保持设备文件和特殊文件(super-user only)
--z, --comporess || 传输文件时进行压缩处理
+-z, --comporess | 传输文件时进行压缩处理
 --exclude=PATTERN | 指定排除一个不需要传输的文件匹配模式
 --exclude-from | 从file 读取排除规则
 --include=PATTERN | 指定需要传输的文件匹配模式
@@ -285,3 +285,14 @@ scp是相当于复制，黏贴，如果有的话是覆盖，比较耗时间，�
 rsync是复制，如果有重复的文件，会直接跳过，而且他自己的算法优化。
 
 scp是把文件全部复制过去，当文件修改后还是把所有文件复制过去，rsync 第一次是把所有文件同步过去，当文件修改后，只把修改的文件同步过去。
+
+
+## example
+```bash
+#!/bin/bash 
+fswatch /Users/lixingwen/Desktop/work/CommunityManagement/ | while read file
+do
+rsync -azh --delete /Users/lixingwen/Desktop/work/CommunityManagement/ --exclude '.git' --exclude '.gitignore' --exclude-from '/Users/lixingwen/Desktop/bash/ignore.txt' -e 'ssh' root@47.96.4.101:/home/wwwroot/crm.c-cf.cn/
+done
+
+```

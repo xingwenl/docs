@@ -117,6 +117,13 @@ s 3f33126c add: 4
 s 改成 edit  就是修改提交信息
 ```
 
+## 常见命令
+
+```bash
+# 强制合并
+git pull origin master --allow-unrelated-histories
+```
+
 
 ## 常见问题
 

@@ -30,3 +30,53 @@ $ npm i --save @nestjs/core @nestjs/common rxjs reflect-metadata
 
 <!-- tabs:end -->
 
+
+## 数据库安装
+
+```bash
+yarn add @nestjs/typeorm typeorm mysql
+```
+
+
+## 查看数据面板
+```bash
+yarn add nest-status-monitor
+```
+
+## 安装swagger
+```bash
+yarn add @nestjs/swagger swagger-ui-express
+```
+
+## 安装 jwt
+```bash
+yarn add @nestjs/jwt passport-jwt
+yarn add @nestjs/passport
+yarn add passport
+```
+
+## Config
+
+```bash
+yarn add joi @types/joi
+```
+
+## log4js
+
+```bash
+yarn add log4js
+yarn add stacktrace-js moment
+```
+
+## 参数验证
+
+```bash
+yarn add class-validator class-transformer
+```
+
+## ws
+
+```bash
+yarn add @nestjs/platform-ws
+```
+
