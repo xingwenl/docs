@@ -73,6 +73,7 @@ FLUSH PRIVILEGES;
 ```
 
 ### 设置远程访问
+如果链接不上， 请先远程访问
 ```sql
 --  进入 mysql
 use mysql;

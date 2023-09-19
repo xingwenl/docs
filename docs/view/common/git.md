@@ -172,3 +172,23 @@ helper = store
 ### 生成地址
 [地址](https://xingwenl.github.io/docs/)
 
+## git 配置
+### 别名， git命令简写
+`vi ~/.gitconfig`
+```conf
+[user]
+	email = ********@qq.com
+	name = ******
+[alias]
+    co = checkout
+	  conie = checkout niejingqiao
+    st = status
+	  sh = stash
+	  shp = stash pop
+    cm = commit -m
+    b = branch
+    bd = branch -D
+    pl = pull origin
+    pld = pull origin develop
+    phnie = push origin niejingqiao
+```

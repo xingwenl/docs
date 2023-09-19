@@ -194,3 +194,12 @@ Volume sex on /dev/disk2s3 mounted
 ```
 
 > [参考](https://www.liuandy.cn/informal_essay/2018/03/21/2333.html#.YFRDTpMzZMI) > [disutil 介绍](https://www.jianshu.com/p/6a1f365617ad)
+
+## "" 已损坏,无法打开， 您应该将它移到废纸篓的解决办法
+
+打开 “访达”(Finder)进入 “应用程序” 目录，找到该软件图标，将图标拖到刚才的终端窗口里面，会得到如下组合：sudo xattr -r -d com.apple.quarantine /Applications/Navicat\ Premium.app，回到终端窗口按回车，输入系统密码回车即可。
+
+```bash
+sudo xattr -r -d com.apple.quarantine /Applications/Navicat\ Premium.app
+```
+

@@ -9,6 +9,33 @@
   安装命令: `curl -fsSL https://get.docker.com | bash -s docker --mirror aliyun`
 
   国内 daocloud 一键安装命令: `curl -sSL https://get.daocloud.io/docker | sh`
+  ```bash
+  # 卸载
+  sudo apt-get remove docker docker-engine docker.io containerd runc
+  # 安装
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  # 启动
+  sudo sh get-docker.sh
+  ```
+
+  ```bash
+   # 在终端中运行以下命令来检查Docker守护程序的状态
+    sudo systemctl status docker
+   # 如果Docker守护程序没有运行，您可以启动它：
+   sudo systemctl start docker
+   # 使用以下命令检查您的用户是否属于docker组：
+    groups your_username
+   # 如果您的用户不在docker组中，可以将其添加到docker组中：
+   sudo usermod -aG docker your_username
+    # 检查/var/run/docker.sock的权限：
+    ls -l /var/run/docker.sock
+    # 确保该文件的权限允许您的用户或docker组访问它。通常，它的权限应该是srw-rw----，所有者是root，组是docker。如果权限不正确，您可以使用以下命令更改它
+    sudo chmod 666 /var/run/docker.sock
+    # 重新启动Docker守护程序：
+    sudo systemctl restart docker
+    # 检查其他问题
+    sudo journalctl -u docker
+  ```
 
 ## Docker 使用
 
@@ -131,6 +158,47 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # 查看一下version，显示有版本号那就说明安装成功了
 docker-compose version
+```
+
+### 使用
+```bash
+# 启动
+docker-compose up -d
+
+-d	# 在后台运行服务容器
+–no-color	# 不使用颜色来区分不同的服务的控制输出
+–no-deps	# 不启动服务所链接的容器
+–force-recreate	# 强制重新创建容器，不能与 –no-recreate 同时使用
+–no-recreate # 如果容器已经存在，则不重新创建，不能与 –force-recreate 同时使用
+–no-build	# 不自动构建缺失的服务镜像
+–build	# 在启动容器前构建服务镜像
+–abort-on-container-exit	# 停止所有容器，如果任何一个容器被停止，不能与-d同时使用
+-t，-–timeout  # int	停止容器时候的超时（默认为 10 秒）
+–remove-orphans	# 删除服务中没有在 compose 文件中定义的容器
+-f # 指定使用的 Compose 模板文件，默认为 docker-compose.yml，可以多次指定
+
+docker-compose start
+docker-compose stop
+docker-compose logs
+
+docker-compose version
+
+# 移除 --rmi all
+docker-compose down
+
+# 重新打包
+docker-compose build
+
+# 查看容器状态
+docker-compose ps
+
+# 删除所有（停止状态的）服务容器
+docker-compose rm
+
+# 在指定服务上执行一个命令。
+docker-compose run
+# 暂停运行中的服务容器
+docker-compose pause
 ```
 
 

@@ -271,9 +271,9 @@ rsync -av --delete --exclude-from=www-rsync-rules / remotehost:/dest/dir
 scp 是 secure copy 的缩写，用于远程的文件的复制
 
 ```bash
-scp /home/space/music/1.mp3 username@ip/home/root/others/music     
+scp /home/space/music/1.mp3 username@ip:/home/root/others/music     
 
-scp /home/space/music/1.mp3 username@ip/home/root/others/music/001.mp3
+scp /home/space/music/1.mp3 username@ip:/home/root/others/music/001.mp3
 
 scp -r /home/space/music/ username@ip:/home/root/others/music_new
 ```
